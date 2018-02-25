@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Drawing
 {
@@ -20,23 +10,35 @@ namespace Drawing
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DrawSet set;
         public MainWindow()
         {
             InitializeComponent();
-
+            set = new DrawSet("1.txt");
+            //MessageBox.Show(String.Format("{0}",set.set[0]));
         }
-
         private void Btn_Start_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("开始");
+            if(set.Count()==0)
+            {
+                MessageBox.Show("请导入名单！");
+                return;
+            }
             new Thread(o =>
             {
-                for (int i = 0; i < 100; i++)
+                String str = "请开始";
+                for (int i = 0; i < 10; i++)
                 {
+                    str = set.DrawOnce();
                     Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                        new Action<Button, String>(SetLabelContent), sender as Button, i.ToString());
+                        new Action<Button, String>(SetLabelContent), sender as Button, str);
                     Thread.Sleep(100);
                 }
+                //TODO 判断是否勾选朗读
+                Type type = Type.GetTypeFromProgID("SAPI.SpVoice");
+                dynamic spVoice = Activator.CreateInstance(type);
+                spVoice.Speak(str);
             })
             { IsBackground = true }.Start();
             
@@ -47,12 +49,15 @@ namespace Drawing
         }
         private void Btn_About_Click(object sender, RoutedEventArgs e)
         {
-            new AboutWindow().Show();
+            AboutWindow about = new AboutWindow();
+            about.Show();
         }
 
         private void Btn_Setting_Click(object sender, RoutedEventArgs e)
         {
-            new SettingWindow().Show();
+            SettingWindow setting = new SettingWindow();
+            setting.SetDrawSet(set);
+            setting.Show();
         }
     }
 }

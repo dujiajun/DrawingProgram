@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Drawing"
         mc:Ignorable="d"
-        Title="关于" Height="200" Width="300">
+        Title="关于" Height="200" Width="300" ResizeMode="NoResize">
     <Grid>
 
         <StackPanel Grid.RowSpan="2" Grid.Row="2" Margin="0,30,0,0" >

@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Drawing"
         mc:Ignorable="d"
-        Title="抽签程序 2018.2" Height="320" Width="480" ResizeMode="CanMinimize">
+        Title="抽签程序 2018.2 Powered By Jiajun Du" Height="320" Width="480" ResizeMode="CanMinimize">
     <Grid Width="480" Height="320">
         <Label x:Name="Label_Main" Content="请开始" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Margin="127,85,127,135" Grid.RowSpan="2"   />
-        <Button x:Name="Btn_Start" Content="开始" HorizontalAlignment="Left" Height="40" Margin="313,221,0,0" VerticalAlignment="Top" Width="100" FontSize="24" Click="Btn_Start_Click"/>
-        <Button x:Name="Btn_About" Content="关于" HorizontalAlignment="Left" Height="24" Margin="62,234,0,0" VerticalAlignment="Top" Width="60" Click="Btn_About_Click"/>
-        <Button x:Name="Btn_Setting" Content="设置" HorizontalAlignment="Left" Height="24" Margin="127,234,0,0" VerticalAlignment="Top" Width="60" Click="Btn_Setting_Click"/>
+        <Button x:Name="Btn_Start" Content="开始" HorizontalAlignment="Right" Height="40" Margin="0,0,62,50" VerticalAlignment="Bottom" Width="100" FontSize="24" Click="Btn_Start_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button x:Name="Btn_About" Content="关于" HorizontalAlignment="Left" Height="24" Margin="62,0,0,50" VerticalAlignment="Bottom" Width="60" Click="Btn_About_Click"/>
+        <Button x:Name="Btn_Setting" Content="设置" HorizontalAlignment="Left" Height="24" Margin="127,234,0,50" VerticalAlignment="Bottom" Width="60" Click="Btn_Setting_Click"/>
+        <Button x:Name="Btn_Advance" Content="其他抽签" HorizontalAlignment="Left" Height="24" Margin="192,234,0,50" VerticalAlignment="Bottom" Width="60" Click="Btn_Setting_Click" Visibility="Hidden"/>
     </Grid>
 </Window>
