@@ -8,56 +8,56 @@ namespace Drawing
 {
     class DrawSet
     {
-        private List<String> set;
+        private List<string> set;
         private Random random;
-        private String file;
-        public DrawSet(String filename)
+        private string file;
+        public DrawSet(string filename)
         {
             set = new List<string>();
             random = new Random(GetRandomSeed());
             file = filename;
-            FileStream fs = new FileStream(@filename,FileMode.OpenOrCreate);
-            
+            FileStream fs = new FileStream(@filename, FileMode.OpenOrCreate);
+
             StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("gb2312"));
-            String line =sr.ReadLine();
-            while (line!=null)
+            string line = sr.ReadLine();
+            while (line != null)
             {
                 set.Add(line);
                 line = sr.ReadLine();
             }
-            
+
         }
-        public void Reset(String filename)
+        public void Reset(string filename)
         {
             set.Clear();
             file = filename;
             FileStream fs = new FileStream(filename, FileMode.OpenOrCreate);
 
             StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("gb2312"));
-            String line = sr.ReadLine();
+            string line = sr.ReadLine();
             while (line != null)
             {
                 set.Add(line);
                 line = sr.ReadLine();
             }
         }
-        public String DrawOnce()
+        public string DrawOnce()
         {
             return set[random.Next() % set.Count()];
         }
-        public String[] DrawTimes(int n)
+        public string[] DrawTimes(int n)
         {
-            List<String> tmp = new List<String>(set);
-            String[] ans = new String[n];
-            for(int i=0;i<n;i++)
+            List<string> tmp = new List<string>(set);
+            string[] ans = new string[n];
+            for (int i = 0; i < n; i++)
             {
-                String once = tmp[random.Next() % set.Count()];
+                string once = tmp[random.Next() % set.Count()];
                 tmp.Remove(once);
                 ans[i] = once;
             }
             return ans;
         }
-        public String[] Upset()
+        public string[] Upset()
         {
             return DrawTimes(set.Count());
         }
@@ -72,17 +72,17 @@ namespace Drawing
         {
             return set.Count();
         }
-        public String[] GetAllValues()
+        public string[] GetAllValues()
         {
-            String[] tmp = new String[set.Count()];
+            string[] tmp = new string[set.Count()];
             set.CopyTo(tmp);
             return tmp;
         }
-        public String GetCurrentFileName()
+        public string GetCurrentFileName()
         {
             return file;
         }
-        public void AddItem(String item)
+        public void AddItem(string item)
         {
             set.Add(item);
         }
