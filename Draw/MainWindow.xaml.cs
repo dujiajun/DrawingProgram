@@ -61,5 +61,12 @@ namespace Drawing
             setting.SetDrawSet(set);
             setting.ShowDialog();
         }
+
+        private void Btn_Advance_Click(object sender, RoutedEventArgs e)
+        {
+            AdvanceWindow advance = new AdvanceWindow();
+            advance.SetDrawSet(set);
+            advance.ShowDialog();
+        }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Forms;
 
 namespace Drawing
@@ -19,7 +22,6 @@ namespace Drawing
             //System.Windows.MessageBox.Show(ConfigHelper.GetValue(StringResource.KeySpeech, bool.FalseString));
             Cb_Speech.IsChecked = bool.TrueString.Equals(ConfigHelper.GetValue(StringResource.KeySpeech, bool.TrueString));
         }
-
         internal void SetDrawSet(DrawSet s)
         {
             set = s;
@@ -27,13 +29,8 @@ namespace Drawing
         }
         private void InitialDatas()
         {
-            StringBuilder builder = new StringBuilder();
-            foreach (string line in set.GetAllValues())
-            {
-                builder.Append(line);
-                builder.AppendLine();
-            }
-            Tb_Names.Text = builder.ToString();
+            string[] names = set.GetAllValues();
+            Lb_Names.ItemsSource = names;
             SetLabelCurrentFile(set.GetCurrentFileName());
         }
         private void SetLabelCurrentFile(string str)
@@ -75,23 +72,26 @@ namespace Drawing
                 System.Windows.MessageBox.Show("请输入文本！");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(Tb_Names.Text)) Tb_Names.Text = str;
-            else Tb_Names.Text = Tb_Names.Text.TrimEnd('\n') + "\n" + str;
+            Lb_Names.ItemsSource = null;
+            Lb_Names.Items.Add(str);
+
             set.AddItem(str);
             Tb_Name.Text = "";
             Tb_Name.Focus();
 
-            FileStream fs = new FileStream(set.GetCurrentFileName(), FileMode.Create);
+            FileStream fs = new FileStream(set.GetCurrentFileName(), FileMode.Append);
             StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding("gb2312"));
-            sw.Write(Tb_Names.Text);
+            sw.Write(str + "\n");
             sw.Close();
             fs.Close();
         }
 
         private void Btn_Import_File_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "文本文件(*.txt)|*.txt";
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                Filter = "文本文件(*.txt)|*.txt"
+            };
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string str = dialog.FileName;

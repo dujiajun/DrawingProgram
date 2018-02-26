@@ -11,6 +11,6 @@
         <Button x:Name="Btn_Start" Content="开始" HorizontalAlignment="Right" Height="40" Margin="0,0,62,50" VerticalAlignment="Bottom" Width="100" FontSize="24" Click="Btn_Start_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Button x:Name="Btn_About" Content="关于" HorizontalAlignment="Left" Height="24" Margin="62,0,0,50" VerticalAlignment="Bottom" Width="60" Click="Btn_About_Click"/>
         <Button x:Name="Btn_Setting" Content="设置" HorizontalAlignment="Left" Height="24" Margin="127,234,0,50" VerticalAlignment="Bottom" Width="60" Click="Btn_Setting_Click"/>
-        <Button x:Name="Btn_Advance" Content="其他抽签" HorizontalAlignment="Left" Height="24" Margin="192,234,0,50" VerticalAlignment="Bottom" Width="60" Click="Btn_Setting_Click" Visibility="Hidden"/>
+        <Button x:Name="Btn_Advance" Content="其他抽签" HorizontalAlignment="Left" Height="24" Margin="192,234,0,50" VerticalAlignment="Bottom" Width="60" Click="Btn_Advance_Click"/>
     </Grid>
 </Window>

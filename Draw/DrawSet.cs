@@ -51,7 +51,7 @@ namespace Drawing
             string[] ans = new string[n];
             for (int i = 0; i < n; i++)
             {
-                string once = tmp[random.Next() % set.Count()];
+                string once = tmp[random.Next() % tmp.Count()];
                 tmp.Remove(once);
                 ans[i] = once;
             }
@@ -85,6 +85,10 @@ namespace Drawing
         public void AddItem(string item)
         {
             set.Add(item);
+        }
+        public int GetRandomNumber(int low,int high)
+        {
+            return low + random.Next() % (high - low + 1);
         }
     }
 }
