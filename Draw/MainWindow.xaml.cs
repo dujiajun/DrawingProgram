@@ -34,7 +34,7 @@ namespace Drawing
                     Thread.Sleep(100);
                 }
                 //TODO 判断是否勾选朗读
-                if (ConfigHelper.GetValue(StringResource.KeySpeech, bool.TrueString).Equals(bool.TrueString))
+                if (ConfigHelper.GetValue(StringResource.KeySpeech, bool.FalseString).Equals(bool.TrueString))
                 {
                     Type type = Type.GetTypeFromProgID("SAPI.SpVoice");
                     dynamic spVoice = Activator.CreateInstance(type);

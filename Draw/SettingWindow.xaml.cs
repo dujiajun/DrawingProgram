@@ -15,12 +15,15 @@ namespace Drawing
     public partial class SettingWindow : Window
     {
         private DrawSet set;
+        private List<string> listNames;
         public SettingWindow()
         {
             InitializeComponent();
+            //listNames = new string[0];
+            listNames = new List<string>();
             SetFileItems();
             //System.Windows.MessageBox.Show(ConfigHelper.GetValue(StringResource.KeySpeech, bool.FalseString));
-            Cb_Speech.IsChecked = bool.TrueString.Equals(ConfigHelper.GetValue(StringResource.KeySpeech, bool.TrueString));
+            Cb_Speech.IsChecked = bool.TrueString.Equals(ConfigHelper.GetValue(StringResource.KeySpeech, bool.FalseString));
         }
         internal void SetDrawSet(DrawSet s)
         {
@@ -29,8 +32,16 @@ namespace Drawing
         }
         private void InitialDatas()
         {
-            string[] names = set.GetAllValues();
-            Lb_Names.ItemsSource = names;
+            //listNames = set.GetAllValues();
+            //set.GetAllValues().CopyTo(listName,0);
+            listNames.Clear();
+            string[] tmp = set.GetAllValues();
+            foreach(string t in tmp)
+            {
+                listNames.Add(t);
+            }
+            Lb_Names.ItemsSource = listNames;
+            Lb_Names.Items.Refresh();
             SetLabelCurrentFile(set.GetCurrentFileName());
         }
         private void SetLabelCurrentFile(string str)
@@ -72,8 +83,9 @@ namespace Drawing
                 System.Windows.MessageBox.Show("请输入文本！");
                 return;
             }
-            Lb_Names.ItemsSource = null;
-            Lb_Names.Items.Add(str);
+            //Lb_Names.ItemsSource = null;
+            listNames.Add(str);
+            Lb_Names.Items.Refresh();
 
             set.AddItem(str);
             Tb_Name.Text = "";
@@ -81,7 +93,7 @@ namespace Drawing
 
             FileStream fs = new FileStream(set.GetCurrentFileName(), FileMode.Append);
             StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding("gb2312"));
-            sw.Write(str + "\n");
+            sw.Write(str + "\r\n");
             sw.Close();
             fs.Close();
         }
@@ -102,7 +114,7 @@ namespace Drawing
 
                     FileStream fs = new FileStream(StringResource.FilesName, FileMode.Append);
                     StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding("gb2312"));
-                    sw.WriteLine(str + "\n");
+                    sw.WriteLine(str);
                     sw.Close();
                     fs.Close();
                 }

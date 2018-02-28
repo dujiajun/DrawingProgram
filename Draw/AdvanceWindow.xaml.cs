@@ -29,13 +29,22 @@ namespace Drawing
         }
         private void Btn_Number_Click(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(Tb_max.Text)||string.IsNullOrWhiteSpace(Tb_min.Text))
+            {
+                MessageBox.Show("请输入范围！");
+                return;
+            }
             Lb_Number.Content = set.GetRandomNumber(int.Parse(Tb_min.Text), int.Parse(Tb_max.Text)).ToString();
-
         }
 
         private void Btn_Several_Click(object sender, RoutedEventArgs e)
         {
             //Lb_Ans.Items.Clear();
+            if (string.IsNullOrWhiteSpace(Tb_num.Text))
+            {
+                MessageBox.Show("请抽取个数！");
+                return;
+            }
             string[] ans = set.DrawTimes(int.Parse(Tb_num.Text));
             Lb_Ans.ItemsSource = ans;
         }

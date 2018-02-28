@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Drawing"
         mc:Ignorable="d"
-        Title="抽签程序 2018.2 Powered By Jiajun Du" Height="320" Width="480" ResizeMode="CanMinimize">
+        Title="抽签程序 2018.2 Powered By Jiajun" Height="320" Width="480" ResizeMode="CanMinimize">
     <Grid Width="480" Height="320">
         <Label x:Name="Label_Main" Content="请开始" VerticalAlignment="Center" FontSize="72" Margin="10,85,10,135" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="460" />
         <Button x:Name="Btn_Start" Content="开始" HorizontalAlignment="Right" Height="40" Margin="0,0,62,50" VerticalAlignment="Bottom" Width="100" FontSize="24" Click="Btn_Start_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>

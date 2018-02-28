@@ -25,7 +25,7 @@
         </GroupBox>
         <GroupBox Header="杂项" HorizontalAlignment="Left" Height="151" Margin="223,209,0,0" VerticalAlignment="Top" Width="195">
             <Grid>
-                <CheckBox x:Name="Cb_Speech" Content="语音朗读" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" IsChecked="True" Checked="Cb_Speech_Checked" Unchecked="Cb_Speech_Unchecked" Click="Cb_Speech_Click" IsEnabled="False"/>
+                <CheckBox x:Name="Cb_Speech" Content="语音朗读" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" Checked="Cb_Speech_Checked" Unchecked="Cb_Speech_Unchecked" Click="Cb_Speech_Click" IsEnabled="False"/>
 
             </Grid>
         </GroupBox>
